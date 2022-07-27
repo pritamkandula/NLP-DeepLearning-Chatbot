@@ -14,25 +14,34 @@ all_words = []
 tags = []
 xy = []
 
+#looping through every sentence in the intents patterns of the json file
 for intent in intents['intents']:
     tag = intent['tag']
+    # add to tag list
     tags.append(tag)
     for pattern in intent['patterns']:
+        # tokenize each word in the sentence
         w = tokenize(pattern)
+        # add to the words list
         all_words.extend(w)
+        # add to xy pair
         xy.append((w, tag))
 
+# stem and lower each word
 ignore_list = ['?','.',',','!']
 all_words = [stem(w) for w in all_words if w not in ignore_list]
+# remove duplicates and sort
 all_words = sorted(set(all_words))
 tags = sorted(set(tags))
 
+# create training data
 X_train = []
 y_train = []
 for (pattern_sentence,tag) in xy:
+    # X: bag of words for each pattern_sentence
     bag = bag_of_words(pattern_sentence, all_words)
     X_train.append(bag)
-
+    # y: PyTorch CrossEntropyLoss needs only class labels, not one-hot
     label = tags.index(tag)
     y_train.append(label)
 
@@ -48,7 +57,7 @@ class ChatDataset(Dataset):
     #dataset[idx]
     def __getitem__(self,index):
         return self.x_data[index], self.y_data[index]
-
+    # we can call len(dataset) to return the size
     def __len__(self):
         return self.n_samples
 
@@ -71,6 +80,7 @@ model = NeuralNet(input_size, hidden_size, output_size).to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr = learning_rate)
 
+# Train the model
 for epoch in range(num_epochs):
     for (words, labels) in train_loader:
         words = words.to(device)
@@ -78,6 +88,8 @@ for epoch in range(num_epochs):
 
         #forward
         outputs = model(words)
+        # if y would be one-hot, we must apply
+        # labels = torch.max(labels, 1)[1]
         loss = criterion(outputs,labels)
 
         #backward and optimizer step
