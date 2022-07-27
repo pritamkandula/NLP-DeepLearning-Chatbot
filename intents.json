@@ -1,0 +1,72 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "Hey",
+        "How are you",
+        "Wassup",
+        "Is anyone there?",
+        "Hello",
+        "Good Day"
+      ],
+      "responses": [
+        "Hey",
+        "I'm fine, what about you? ",
+        "I'm doing good",
+        "I'm here",
+        "Good to see you, what can I do for you?",
+        "Bolo kya kaam hai?",
+        "How can I help you?"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "Chal I gtg",
+        "I'll see you soon bye",
+        "Chal bye",
+        "Chal milte hai",
+        "Bubyee",
+        "Bye, see you later",
+        "goodbye"
+      ],
+      "responses": [
+        "Okay bubyee",
+        "Bye bro",
+        "Have a nice day",
+        "See you soon, bye",
+        "Ok milte hai",
+        "Come back soon, bye!"
+      ]
+    },
+    {
+      "tag": "casual",
+      "patterns": [
+        "I'm bored",
+        "bore ho rha hu",
+        "bore lag rha hai yaar",
+        "It's been a hectic day",
+        "I am sad",
+        "feeling tired",
+        "anything else to say or suggest?",
+        "Suggest me something to do",
+        "feeling hungry",
+        "I want to eat something",
+        "I want to go out "
+      ],
+      "responses": [
+        "Order something for yourself",
+        "You can go out get some fresh air",
+        "I think you can catch up with your friends",
+        "Achcha, go play Cricket",
+        "Listen to music ",
+        "I think you can watch the whole Marvel series ",
+        "Take rest",
+        "Have junk food and satisfy yourself",
+        "Watch a movie!"
+      ]
+    }
+  ]
+}
